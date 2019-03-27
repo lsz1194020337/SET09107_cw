@@ -1,0 +1,21 @@
+/*
+***
+Drop Tables And Types
+***
+*/
+ 
+drop table tb_Employee; 
+drop table tb_Account;
+drop table tb_Branch; 
+drop table tb_Customer; 
+drop table tb_CustomerAccount;
+drop type Account_t force;
+drop type Name_t force; 
+drop type Address_t force;
+drop type Branch_t force; 
+drop type People_t force;  
+drop type Employee_t force; 
+drop type Customer_t force; 
+drop type Phone_t force;
+drop type tb_Phone_t force;
+/

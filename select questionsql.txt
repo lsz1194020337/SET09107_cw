@@ -1,0 +1,109 @@
+/*
+***
+Questions
+***
+*/
+
+/*Qa*/
+select  e.name.title||' '||
+        e.name.firstName||' '||
+        e.name.surName
+from 	tb_employee e 
+where 	e.name.firstname like '%ar%'
+and 	e.address.city = 'Edinburgh';
+
+/*Qb*/
+select a.bID.bID as "BID",
+       a.bID.city as "CITY",
+       count(a.accType) as "NUMBER"
+from   tb_Account a
+where  accType = 'saving'
+group by a.bID.bID,
+         a.bID.city,
+         a.accType
+order by a.bID.bID;
+
+/*Qc*/
+alter type People_t
+add member function get_name return varchar2,
+add member function get_address return varchar2 cascade;
+/
+create or replace type body People_t as
+member function get_name return VARCHAR2 is
+begin
+     return name.title|| ' '|| name.firstName || name.surName;
+end get_name;
+
+member function get_address return VARCHAR2 is
+begin
+     return address.street|| ', '|| address.city || ' ' || address.p_Code;
+end get_address;
+end;
+/
+select 
+        c.accNum.bID.bID AS BID, 
+        c.custID.get_name() AS Name, 
+        c.accNum.balance AS Balance       
+    from ( 
+        select 
+            c.accNum.bID.bID AS bID, 
+            c.accNum.accType AS acctype, 
+            MAX (c.accNum.balance) AS Maxbalance
+            from 
+                tb_CustomerAccount c
+            where 
+                c.accNum.accType = 'saving' 
+            group by c.accNum.bID.bID, c.accNum.accType
+        ) balance
+    join tb_CustomerAccount c 
+    on 
+        c.accNum.bID.bID = balance.bID
+    and 
+        c.accNum.accType = balance.acctype
+    and 
+        c.accNum.balance = balance.Maxbalance
+/
+
+/*Qd*/
+select     
+    e.get_address() as Workaddress
+from 
+    tb_Employee e, tb_CustomerAccount c
+where
+    c.custID.name.firstName = e.name.firstName
+and 
+    c.custID.name.surName = e.name.surName
+and 
+    e.position = 'Leader'
+order by 
+    e.empID;
+/
+
+/*Qe*/
+select 
+    c.accNum.bID.bID AS BID, 
+    c.custID.get_name() AS Fullname, 
+    c.accNum.limitOfFreeOD AS freeOD
+    FROM ( 
+        SELECT c.accNum.bID.bID AS branch_id, 
+            MAX(c.accNum.limitOfFreeOD) AS maxOD
+            FROM tb_CustomerAccount c 
+            GROUP BY c.accNum.bID.bID
+        ) maxOD, tb_CustomerAccount c
+        WHERE c.accNum.limitOfFreeOD = maxOD.maxOD
+        AND
+         c.accNum.bID.bID = maxOD.branch_id
+         ORDER BY c.accNum.bID.bID
+/
+
+/*Qg*/
+select 
+    count(e.get_name()) as NumberOfEmployee, 
+    e.supervisorID.get_name() as SupervisorOfEmployee 
+    from tb_Employee e 
+   where e.supervisorID.name.surName = 'Smith'
+   and e.supervisorID.name.title = 'Mr.'
+   or e.supervisorID.name.surName = 'Jones'
+   and e.supervisorID.name.title = 'Mrs'
+  group by e.supervisorID.get_name()
+/

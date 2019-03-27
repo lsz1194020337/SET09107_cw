@@ -1,0 +1,1138 @@
+/*
+***
+Insert data
+***
+*/
+
+
+/*
+Branch table
+*/
+
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Single st',
+'Edinburgh',
+'EH1 2AB',
+'1901',
+tb_Phone_t(Phone_t('Branch','01311235560'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Market st',
+'Edinburgh',
+'EH3 3AH',
+'1902',
+tb_Phone_t(Phone_t('Branch','01413214556'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Lake st',
+'Edinburgh',
+'EH11 5DC',
+'1903',
+tb_Phone_t(Phone_t('Branch','01317695068'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Sliver st',
+'Edinburgh',
+'EH13 9AD',
+'1904',
+tb_Phone_t(Phone_t('Branch','01416258903'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Goden st',
+'Edinburgh',
+'EH11 9AP',
+'1905',
+tb_Phone_t(Phone_t('Branch','02019060456'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Bake st',
+'Edinburgh',
+'EH14 5CG',
+'1906',
+tb_Phone_t(Phone_t('Branch','02060504030'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Sky st',
+'Glasgow',
+'G18 1QQ',
+'1907',
+tb_Phone_t(Phone_t('Branch','01917615438'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Bridge st',
+'Glasgow',
+'G1 2AB',
+'1908',
+tb_Phone_t(Phone_t('Branch','06954871230'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Apple st',
+'Glasgow',
+'G3 4HK',
+'1909',
+tb_Phone_t(Phone_t('Branch','07961523489'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Price st',
+'Glasgow',
+'G11 5ER',
+'1910',
+tb_Phone_t(Phone_t('Branch','03986124576'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Walk st',
+'Glasgow',
+'G6 9BC',
+'1911',
+tb_Phone_t(Phone_t('Branch','02154699223'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Mountain st',
+'London',
+'WC1B 3DG',
+'1912',
+tb_Phone_t(Phone_t('Branch','06645787931'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Bridge st',
+'London',
+'W1H 7EJ',
+'1913',
+tb_Phone_t(Phone_t('Branch','01315647892'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Sky st',
+'London',
+'W2C 6BH',
+'1914',
+tb_Phone_t(Phone_t('Branch','01214567954'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Hosptial st',
+'London',
+'WH2C 6HJ',
+'1915',
+tb_Phone_t(Phone_t('Branch','01698547692'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'June st',
+'London',
+'W6W 6SH',
+'1916',
+tb_Phone_t(Phone_t('Branch','01985464872'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Peace st',
+'Leith',
+'EH6 9RG',
+'1917',
+tb_Phone_t(Phone_t('Branch','06364291873'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Technical st',
+'Leith',
+'EH1 1AB',
+'1918',
+tb_Phone_t(Phone_t('Branch','05416120101'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Food st',
+'Leith',
+'EH14 9BC',
+'1919',
+tb_Phone_t(Phone_t('Branch','03179854162'))
+)
+/
+insert into tb_Branch(street, city, p_code, bID, phone) values (
+'Snack st',
+'Leith',
+'EH9 8GH',
+'1920',
+tb_Phone_t(Phone_t('Branch','04968752319'))
+)
+/
+
+/*
+***
+Employee table
+***
+*/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mr.', 'Han','Smith'),--name
+Address_t(
+'Queen st',
+'London',
+'EH14 9BC'),--address
+'N019',--niNum
+tb_Phone_t(Phone_t('HomePhone', '09556323233'), Phone_t('Mobile1', '0665432101'), Phone_t('Mobile2', 'NULL')),--phone
+'119',--empID
+'24-Feb-2005',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1919'),--bID
+'Head',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'50000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mrs', 'Bluth','Jones'),--name
+Address_t(
+'Fountainbridge st',
+'Edinburgh',
+'EH11 9AP'),--address
+'N005',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01918171652'), Phone_t('Mobile1', '0448463232'), Phone_t('Mobile2', '0750312819')),--phone
+'105',--empID
+'12-May-2010',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1905'),--bID
+'Manger',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'40000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mrs.', 'Jones','Smith'),--name
+Address_t(
+'Fountainbridge st',
+'Edinburgh',
+'EH1 2AB'),--address
+'N001',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01312125555'), Phone_t('Mobile1', '0770685321'), Phone_t('Mobile2', 'NULL')),--phone
+'101',--empID
+'11-Jan-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1901'),--bID
+'Accountant',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'30000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mr.', 'John','Jack'),--name
+Address_t(
+'River st',
+'Glasgow',
+'EH3 3AH'),--address
+'N002',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01312031990'), Phone_t('Mobile1', '0774954678'), Phone_t('Mobile2', '756596030')),--phone
+'102',--empID
+'12-Mar-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1919'),--bID
+'Accountant',--position
+(select ref(e) from tb_Employee e where e.empID = '119'),--supervisorID
+'30000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Miss', 'Mark','Lee'),--name
+Address_t(
+'River st',
+'London',
+'EH11 5DC'),--address
+'N003',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01312101211'), Phone_t('Mobile1', '0795326262'), Phone_t('Mobile2', 'NULL')),--phone
+'103',--empID
+'13-Sep-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1919'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = '119'),--supervisorID
+'10000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Miss', 'Alison','William'),--name
+Address_t(
+'Fountainbridge st',
+'Manchester',
+'EH13 9AD'),--address
+'N004',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01416101656'), Phone_t('Mobile1', '0765623323'), Phone_t('Mobile2', 'NULL')),--phone
+'104',--empID
+'14-Apr-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1905'),--bID
+'Leader',--position
+(select ref(e) from tb_Employee e where e.empID = '105'),--supervisorID
+'35000'--salary
+)
+/
+
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mrs', 'Han','Slack'),--name
+Address_t(
+'Price st',
+'London',
+'EH14 5CG'),--address
+'N006',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01312125555'), Phone_t('Mobile1', '0770685321'), Phone_t('Mobile2', 'NULL')),--phone
+'106',--empID
+'23-Dec-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1905'),--bID
+'Accountant',--position
+(select ref(e) from tb_Employee e where e.empID = '105'),--supervisorID
+'30000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mr.', 'Yue','Jack'),--name
+Address_t(
+'Queen st',
+'Glasgow',
+'G18 1QQ'),--address
+'N007',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01417181632'), Phone_t('Mobile1', '0313215165'), Phone_t('Mobile2', '0750734965')),--phone
+'107',--empID
+'11-Nov-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1919'),--bID
+'Accountant',--position
+(select ref(e) from tb_Employee e where e.empID = '119'),--supervisorID
+'30000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Miss', 'Han','Jones'),--name
+Address_t(
+'Price st',
+'Manchester',
+'G1 2AB'),--address
+'N008',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01514168320'), Phone_t('Mobile1', '0232378166'), Phone_t('Mobile2', 'NULL')),--phone
+'108',--empID
+'05-May-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1905'),--bID
+'Accountant',--position
+(select ref(e) from tb_Employee e where e.empID = '105'),--supervisorID
+'30000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mr.', 'Bluth','Slack'),--name
+Address_t(
+'Mountain st',
+'London',
+'G3 4HK'),--address
+'N009',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01410161565'), Phone_t('Mobile1', '0750561284'), Phone_t('Mobile2', '0795522846')),--phone
+'109',--empID
+'05-Sep-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1905'),--bID
+'Leader',--position
+(select ref(e) from tb_Employee e where e.empID = '105'),--supervisorID
+'35000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Miss', 'Jones','William'),--name
+Address_t(
+'Price st',
+'London',
+'G11 5ER'),--address
+'N010',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01325101211'), Phone_t('Mobile1', '0750486975'), Phone_t('Mobile2', 'NULL')),--phone
+'110',--empID
+'06-Jul-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1911'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'9000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mrs', 'Jack','Jones'),--name
+Address_t(
+'Queen st',
+'Manchester',
+'G6 9BC'),--address
+'N011',--niNum
+tb_Phone_t(Phone_t('HomePhone', '01515611531'), Phone_t('Mobile1', '0323216599'), Phone_t('Mobile2', '0750874921')),--phone
+'111',--empID
+'21-Jul-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1911'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'8000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mrs', 'Alison','Jane'),--name
+Address_t(
+'Fountainbridge st',
+'Glasgow',
+'WC1B 3DG'),--address
+'N012',--niNum
+tb_Phone_t(Phone_t('HomePhone', '05866515615'), Phone_t('Mobile1', '0231365659'), Phone_t('Mobile2', 'NULL')),--phone
+'112',--empID
+'08-Sep-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1912'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'10000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mr.', 'Mark','Jobs'),--name
+Address_t(
+'Queen st',
+'Manchester',
+'W1H 7EJ'),--address
+'N013',--niNum
+tb_Phone_t(Phone_t('HomePhone', '02232323256'), Phone_t('Mobile1', '0668469995'), Phone_t('Mobile2', 'NULL')),--phone
+'113',--empID
+'04-Nov-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1913'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'10000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mrs', 'Bluth','William'),--name
+Address_t(
+'Price st',
+'Edinburgh',
+'W2C 6BH'),--address
+'N014',--niNum
+tb_Phone_t(Phone_t('HomePhone', '05416120101'), Phone_t('Mobile1', '0750497975'), Phone_t('Mobile2', '0750612846')),--phone
+'114',--empID
+'10-Jul-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1914'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'6000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Miss', 'Caroline','Jobs'),--name
+Address_t(
+'Fountainbridge st',
+'Edinburgh',
+'WH2C 6HJ'),--address
+'N015',--niNum
+tb_Phone_t(Phone_t('HomePhone', '05416120103'), Phone_t('Mobile1', '0683249799'), Phone_t('Mobile2', 'NULL')),--phone
+'115',--empID
+'24-Dec-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1919'),--bID
+'Accountant',--position
+(select ref(e) from tb_Employee e where e.empID = '119'),--supervisorID
+'30000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Miss', 'Jones','Jane'),--name
+Address_t(
+'Price st',
+'Glasgow',
+'W6W 6SH'),--address
+'N016',--niNum
+tb_Phone_t(Phone_t('HomePhone', '02398751625'), Phone_t('Mobile1', '0564943262'), Phone_t('Mobile2', 'NULL')),--phone
+'116',--empID
+'25-Dec-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1916'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'10000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Miss', 'Bluth','Jack'),--name
+Address_t(
+'Queen st',
+'Glasgow',
+'EH6 9RG'),--address
+'N017',--niNum
+tb_Phone_t(Phone_t('HomePhone', '02121515561'), Phone_t('Mobile1', '0656523232'), Phone_t('Mobile2', 'NULL')),--phone
+'117',--empID
+'26-Nov-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1917'),--bID
+'NULL',--position
+(select ref(e) from tb_Employee e where e.empID = 'NULL'),--supervisorID
+'6000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mr.', 'Yue','Lee'),--name
+Address_t(
+'Price st',
+'Edinburgh',
+'EH11 1AB'),--address
+'N018',--niNum
+tb_Phone_t(Phone_t('HomePhone', '0999856321'), Phone_t('Mobile1', '0999856321'), Phone_t('Mobile2', '0750859321')),--phone
+'118',--empID
+'11-Nov-2014',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1919'),--bID
+'Accountant',--position
+(select ref(e) from tb_Employee e where e.empID = '119'),--supervisorID
+'6000'--salary
+)
+/
+insert into tb_Employee(name, address, niNum, phone, empID, joinDate, bID, position, supervisorID, salary ) values(
+Name_t(
+'Mr.', 'Bluth','Lee'),--name
+Address_t(
+'Queen st',
+'Glasgow',
+'EH9 8GH'),--address
+'N020',--niNum
+tb_Phone_t(Phone_t('HomePhone', '06565132523'), Phone_t('Mobile1', '0956562030'), Phone_t('Mobile2', 'NULL')),--phone
+'120',--empID
+'12-Oct-2012',--joinDate
+(select ref(b) from tb_Branch b where b.bID = '1919'),--bID
+'Leader',--position
+(select ref(e) from tb_Employee e where e.empID = '119'),--supervisorID
+'35000'--salary
+)
+/
+
+/*
+***
+Cuatomer table
+***
+*/
+
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mrs',
+'Bluth',
+'Smith'),
+Address_t(
+'Single st',
+'Glasgow',
+'G3 4HK'),
+'N021',
+tb_Phone_t(Phone_t('HomePhone', '01565611531'), Phone_t('Mobile1', '0770645321'), Phone_t('Mobile2', 'NULL')),
+'2001'
+)
+/
+
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'Jones ',
+'Jack'),
+Address_t(
+'Market st',
+'Glasgow',
+'G11 5ER'),
+'N022',
+tb_Phone_t(Phone_t('HomePhone', '05866915615'), Phone_t('Mobile1', '0774374678'), Phone_t('Mobile2', 'NULL')),
+'2002'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Miss',
+'Jack',
+'Lee'),
+Address_t(
+'Lake st',
+'Glasgow',
+'G6 9BC'),
+'N023',
+tb_Phone_t(Phone_t('HomePhone', '02234823256'), Phone_t('Mobile1', '0795319262'), Phone_t('Mobile2', 'NULL')),
+'2003'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Miss',
+'Alison',
+'William'),
+Address_t(
+'Sliver st',
+'Glasgow',
+'WC1B 3DG'),
+'N004',
+tb_Phone_t(Phone_t('HomePhone', '05419120101'), Phone_t('Mobile1', '0765625523'), Phone_t('Mobile2', '0756192030')),
+'2004'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mrs',
+'Mark',
+'Jones'),
+Address_t(
+'Goden st',
+'Glasgow',
+'W1H 7EJ'),
+'N024',
+tb_Phone_t(Phone_t('HomePhone', '05410120103'), Phone_t('Mobile1', '0449163232'), Phone_t('Mobile2', 'NULL')),
+'2005'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mrs',
+'Bluth',
+'Slack'),
+Address_t(
+'Bake st',
+'London',
+'W2C 6BH'),
+'N025',
+tb_Phone_t(Phone_t('HomePhone', '02335751625'), Phone_t('Mobile1', '0565656395'), Phone_t('Mobile2', 'NULL')),
+'2006'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'John',
+'Jack'),
+Address_t(
+'Sky st',
+'London',
+'WH2C 6HJ'),
+'N026',
+tb_Phone_t(Phone_t('HomePhone', '02168515561'), Phone_t('Mobile1', '0313265165'), Phone_t('Mobile2', '0750643819')),
+'2007'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Miss',
+'Jones',
+'Lee'),
+Address_t(
+'Bridge st',
+'London',
+'W6W 6SH'),
+'N027',
+tb_Phone_t(Phone_t('HomePhone', '02232149151'), Phone_t('Mobile1', '0239578166'), Phone_t('Mobile2', 'NULL')),
+'2008'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'Bluth',
+'Slack'),
+Address_t(
+'Apple st',
+'London',
+'EH1 2AB'),
+'N010',
+tb_Phone_t(Phone_t('HomePhone', '9556323233'), Phone_t('Mobile1', '0750583284'), Phone_t('Mobile2', '0750674965')),
+'2009'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Miss',
+'Jones',
+'William'),
+Address_t(
+'Price st',
+'London',
+'EH3 3AH'),
+'N009',
+tb_Phone_t(Phone_t('HomePhone', '06935132523'), Phone_t('Mobile1', '0776171244'), Phone_t('Mobile2', 'NULL')),
+'2010'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'Han',
+'Jones'),
+Address_t(
+'Walk st',
+'Leith',
+'Eh11 5DC'),
+'N028',
+tb_Phone_t(Phone_t('HomePhone', '01255612656'), Phone_t('Mobile1', '0323235599'), Phone_t('Mobile2', 'NULL')),
+'2011'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mrs',
+'Bluth',
+'Jane'),
+Address_t(
+'Mountain st',
+'Leith',
+'EH13 9AD'),
+'N029',
+tb_Phone_t(Phone_t('HomePhone', '01317125555'), Phone_t('Mobile1', '0231685659'), Phone_t('Mobile2', 'NULL')),
+'2012'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'Alison',
+'Jobs'),
+Address_t(
+'Bridge st',
+'Leith',
+'EH11 9AP'),
+'N030',
+tb_Phone_t(Phone_t('HomePhone', '01396031990'), Phone_t('Mobile1', '0668413795'), Phone_t('Mobile2', '0750858321')),
+'2013'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Miss',
+'Jones',
+'William'),
+Address_t(
+'Price st',
+'London',
+'G11 5ER'),
+'N031',
+tb_Phone_t(Phone_t('HomePhone', '01325101211'), Phone_t('Mobile1', '0750486975'), Phone_t('Mobile2', 'NULL')),
+'2014'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'John',
+'Jobs'),
+Address_t(
+'Hosptial st',
+'Leith',
+'G18 1QQ'),
+'N032',
+tb_Phone_t(Phone_t('HomePhone', '01469101656'), Phone_t('Mobile1', '0674249799'), Phone_t('Mobile2', 'NULL')),
+'2015'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Miss',
+'Mark',
+'Jane'),
+Address_t(
+'June st',
+'Edinburgh',
+'G1 2AB'),
+'N033',
+tb_Phone_t(Phone_t('HomePhone', '01996871652'), Phone_t('Mobile1', '0569213262'), Phone_t('Mobile2', '0750692846')),
+'2016'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Miss',
+'Alison',
+'Jack'),
+Address_t(
+'Peace st',
+'Edinburgh',
+'EH6 9RG'),
+'N034',
+tb_Phone_t(Phone_t('HomePhone', '01096121615'), Phone_t('Mobile1', '0167813465'), Phone_t('Mobile2', 'NULL')),
+'2017'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'Bluth',
+'Lee'),
+Address_t(
+'Technical st',
+'Edinburgh',
+'EH1 1AB'),
+'N035',
+tb_Phone_t(Phone_t('HomePhone', '01417137632'), Phone_t('Mobile1', '0916817321'), Phone_t('Mobile2', 'NULL')),
+'2018'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'Han',
+'Smith'),
+Address_t(
+'Food st',
+'Edinburgh',
+'EH14 9BC'),
+'N036',
+tb_Phone_t(Phone_t('HomePhone', '01514164920'), Phone_t('Mobile1', '0665439501'), Phone_t('Mobile2', 'NULL')),
+'2019'
+)
+/
+insert into tb_Customer(name, address, niNum, phone, custId) values (
+Name_t(
+'Mr.',
+'Yue',
+'Lee'),
+Address_t(
+'Snack st',
+'Edinburgh',
+'EH6 6HE'),
+'N037',
+tb_Phone_t(Phone_t('HomePhone', '01438161565'), Phone_t('Mobile1', '0957162030'), Phone_t('Mobile2', '0750816321')),
+'2020'
+)
+/
+
+/*
+***
+Account table
+***
+*/
+
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1001',
+'saving',
+'800',
+(select ref(b) from tb_Branch b where b.bID = '1901'),
+'0.005',
+'500',
+'25-Feb-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1002',
+'current',
+'900',
+(select ref(b) from tb_Branch b where b.bID = '1902'),
+'0.02',
+'700',
+'26-Feb-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1003',
+'current',
+'5000',
+(select ref(b) from tb_Branch b where b.bID = '1903'),
+'0.001',
+'2000',
+'27-Feb-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1004',
+'current',
+'10000',
+(select ref(b) from tb_Branch b where b.bID = '1904'),
+'0.0006',
+'6000',
+'28-Feb-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1005',
+'saving',
+'60',
+(select ref(b) from tb_Branch b where b.bID = '1905'),
+'0.008',
+'200',
+'01-Mar-2014'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1006',
+'saving',
+'950',
+(select ref(b) from tb_Branch b where b.bID = '1906'),
+'0.0096',
+'20000',
+'06-Jun-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1007',
+'current',
+'150',
+(select ref(b) from tb_Branch b where b.bID = '1907'),
+'0.09',
+'200',
+'03-May-2018'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1008',
+'current',
+'230',
+(select ref(b) from tb_Branch b where b.bID = '1908'),
+'0.0054',
+'200',
+'04-Mar-2001'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1009',
+'saving',
+'290',
+(select ref(b) from tb_Branch b where b.bID = '1909'),
+'0.03',
+'300',
+'05-Mar-2004'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1010',
+'saving',
+'77777',
+(select ref(b) from tb_Branch b where b.bID = '1910'),
+'0.0096',
+'20000',
+'06-Jun-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1011',
+'saving',
+'999',
+(select ref(b) from tb_Branch b where b.bID = '1911'),
+'0.08',
+'2000',
+'06-Sep-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1012',
+'current',
+'666',
+(select ref(b) from tb_Branch b where b.bID = '1912'),
+'0.074',
+'600',
+'08-Sep-2010'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1013',
+'saving',
+'999',
+(select ref(b) from tb_Branch b where b.bID = '1913'),
+'0.021',
+'500',
+'27-Sep-2005'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1014',
+'current',
+'590',
+(select ref(b) from tb_Branch b where b.bID = '1914'),
+'0.0125',
+'300',
+'10-Apr-2008'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1015',
+'current',
+'777777',
+(select ref(b) from tb_Branch b where b.bID = '1915'),
+'0.04',
+'20000',
+'29-Oct-2019'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1016',
+'saving',
+'65480',
+(select ref(b) from tb_Branch b where b.bID = '1916'),
+'0.008',
+'20000',
+'19-Mar-2006'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1017',
+'current',
+'7654',
+(select ref(b) from tb_Branch b where b.bID = '1917'),
+'0.007',
+'5000',
+'25-Mar-2003'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1018',
+'saving',
+'9999',
+(select ref(b) from tb_Branch b where b.bID = '1918'),
+'0.054',
+'6000',
+'14-Feb-2019'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1019',
+'current',
+'1001',
+(select ref(b) from tb_Branch b where b.bID = '1919'),
+'0.063',
+'500',
+'12-Mar-2012'
+)
+/
+insert into tb_Account(accNum, accType, balance, bID, inRate, limitOfFreeOD, openDate) values(
+'1020',
+'currnt',
+'9009',
+(select ref(b) from tb_Branch b where b.bID = '1920'),
+'0.002',
+'6000',
+'13-Jun-2014'
+)
+/
+
+
+/*
+***
+CustomerAccount
+***
+*/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2001'),
+(select ref(a) from tb_Account a where accNum = '1001')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2002'),
+(select ref(a) from tb_Account a where accNum = '1002')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2003'),
+(select ref(a) from tb_Account a where accNum = '1003')
+)
+/
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2004'),
+(select ref(a) from tb_Account a where accNum = '1004')
+)
+/
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2005'),
+(select ref(a) from tb_Account a where accNum = '1005')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2006'),
+(select ref(a) from tb_Account a where accNum = '1010')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2007'),
+(select ref(a) from tb_Account a where accNum = '1007')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2008'),
+(select ref(a) from tb_Account a where accNum = '1008')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2009'),
+(select ref(a) from tb_Account a where accNum = '1009')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2010'),
+(select ref(a) from tb_Account a where accNum = '1010')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2011'),
+(select ref(a) from tb_Account a where accNum = '1011')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2012'),
+(select ref(a) from tb_Account a where accNum = '1012')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2013'),
+(select ref(a) from tb_Account a where accNum = '1013')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2014'),
+(select ref(a) from tb_Account a where accNum = '1014')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2015'),
+(select ref(a) from tb_Account a where accNum = '1015')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2016'),
+(select ref(a) from tb_Account a where accNum = '1016')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2017'),
+(select ref(a) from tb_Account a where accNum = '1017')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2018'),
+(select ref(a) from tb_Account a where accNum = '1018')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2019'),
+(select ref(a) from tb_Account a where accNum = '1019')
+)
+/
+
+insert into tb_CustomerAccount(custID, accNum) values(
+(select ref(c) from tb_Customer c where custID ='2020'),
+(select ref(a) from tb_Account a where accNum = '1020')
+)
+/

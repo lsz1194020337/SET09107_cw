@@ -1,0 +1,126 @@
+/*
+***
+Create types
+***
+*/
+
+create type Name_t as object(
+    title VARCHAR2(20),
+    firstName VARCHAR2(20), 
+    surName VARCHAR2(20)
+    )
+    not final 
+/
+
+create type Phone_t as object(
+    phoneName VARCHAR2(20),
+    phoneNum VARCHAR2(20)
+    )
+    not final
+/
+
+create type tb_Phone_t as table of Phone_t
+/
+
+create type Address_t as object(
+    street VARCHAR2(20), 
+    city VARCHAR2(20), 
+    p_Code VARCHAR2(20)
+    )
+    not final
+/
+
+create type Branch_t under Address_t(
+    bID VARCHAR2(20), 
+    phone tb_Phone_t
+    )
+    not final 
+/    
+
+create type People_t as object(
+    name Name_t,
+    address Address_t, 
+    niNum VARCHAR2(20),
+    phone tb_Phone_t
+    )
+    not final
+/
+
+create type Employee_t under People_t(
+    empID VARCHAR2(20),
+    joinDate DATE,
+    bID ref Branch_t, 
+    position VARCHAR2(20),
+    salary INT,
+    supervisorID ref Employee_t
+    )
+    not final
+/
+
+create type Customer_t under People_t(
+    custID VARCHAR2(20)
+    )
+    not final
+/  
+
+create type Account_t as object(
+    accNum INT, 
+    acctype VARCHAR2(20), 
+    balance INT, 
+    bID ref Branch_t, 
+    inRate VARCHAR2(20), 
+    limitOfFreeOD INT, 
+    openDate DATE
+    )
+    not final 
+/
+
+/*
+***
+Create tables
+***
+*/
+
+create table tb_Employee of Employee_t(
+    constraint empID primary key (empID), 
+    constraint niNum unique (niNum),
+    constraint phone check(phone is NOT NULL),
+    constraint bID check(bID is NOT NULL),
+    constraint joinDate check (joinDate is NOT NULL),  
+    constraint surName check (name.surName is NOT NULL)
+    )
+    nested table phone store as emp_phone_nt
+
+/
+create table tb_Account of Account_t(
+    constraint accNum primary key(accNum), 
+    constraint acctype check(acctype is NOT NULL), 
+    constraint openDate check (openDate is NOT NULL)
+    );
+
+/    
+create table tb_Branch of Branch_t(
+    constraint Branch_bID primary key(bID), 
+    constraint city check(city is NOT NULL), 
+    constraint Bphone check(phone is NOT NULL), 
+    constraint street check(street is NOT NULL), 
+    constraint p_code check(p_code is NOT NULL)
+    )
+    nested table phone store as branchPhone_nt    
+
+/ 
+create table tb_Customer of Customer_t(
+    constraint custID primary key(custID), 
+    constraint name check(name is NOT NULL), 
+    constraint cust_phone check(phone is NOT NULL),
+    constraint address check(address.city is NOT NULL), 
+    constraint cust_niNum unique (niNum)
+    )
+    NESTED table phone store as custphone_nt
+/
+
+create table tb_CustomerAccount(
+    custID ref Customer_t scope is tb_Customer, 
+    accNum ref Account_t scope is tb_Account
+    )
+/
